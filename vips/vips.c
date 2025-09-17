@@ -127,6 +127,26 @@ vips_tiffload_go(void *buf, size_t len, VipsImage **out)
 }
 
 int
+vips_pdfload_go(void *buf, size_t len, double scale, VipsImage **out) {
+  // libvips limits the minimal scale to 0.001, so we have to scale down dpi
+  // for lower scale values
+  double dpi = 72.0;
+  if (scale < 0.001) {
+    dpi *= VIPS_MAX(scale / 0.001, 0.001);
+    scale = 0.001;
+  }
+
+  return vips_pdfload_buffer(
+      buf, len, out,
+      "access", VIPS_ACCESS_SEQUENTIAL,
+      "page", 0,
+      "n", 1,
+      "scale", scale,
+      "dpi", dpi,
+      NULL);
+}
+
+int
 vips_black_go(VipsImage **out, int width, int height, int bands)
 {
   VipsImage *tmp = NULL;

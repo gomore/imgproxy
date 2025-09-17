@@ -270,6 +270,8 @@ func SupportsLoad(it imagetype.Type) bool {
 		sup = hasOperation("heifload_buffer")
 	case imagetype.TIFF:
 		sup = hasOperation("tiffload_buffer")
+	case imagetype.PDF:
+		sup = hasOperation("pdfload_buffer")
 	}
 
 	typeSupportLoad.Store(it, sup)
@@ -390,6 +392,8 @@ func (img *Image) Load(imgdata *imagedata.ImageData, shrink int, scale float64, 
 		err = C.vips_heifload_go(data, dataSize, &tmp, C.int(0))
 	case imagetype.TIFF:
 		err = C.vips_tiffload_go(data, dataSize, &tmp)
+	case imagetype.PDF:
+		err = C.vips_pdfload_go(data, dataSize, C.double(scale), &tmp)
 	default:
 		return newVipsError("Usupported image type to load")
 	}

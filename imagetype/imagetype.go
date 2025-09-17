@@ -22,6 +22,7 @@ const (
 	AVIF
 	BMP
 	TIFF
+	PDF
 )
 
 const (
@@ -43,6 +44,7 @@ var (
 		"avif": AVIF,
 		"bmp":  BMP,
 		"tiff": TIFF,
+		"pdf": PDF,
 	}
 
 	mimes = map[Type]string{
@@ -57,6 +59,7 @@ var (
 		AVIF: "image/avif",
 		BMP:  "image/bmp",
 		TIFF: "image/tiff",
+		PDF: "application/pdf",
 	}
 
 	extensions = map[Type]string{
@@ -71,6 +74,7 @@ var (
 		AVIF: ".avif",
 		BMP:  ".bmp",
 		TIFF: ".tiff",
+		PDF: ".pdf",
 	}
 )
 

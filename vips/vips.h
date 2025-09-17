@@ -27,6 +27,7 @@ int vips_gifload_go(void *buf, size_t len, int pages, VipsImage **out);
 int vips_svgload_go(void *buf, size_t len, double scale, VipsImage **out, int unlimited);
 int vips_heifload_go(void *buf, size_t len, VipsImage **out, int thumbnail);
 int vips_tiffload_go(void *buf, size_t len, VipsImage **out);
+int vips_pdfload_go(void *buf, size_t len, double scale, VipsImage **out);
 
 int vips_black_go(VipsImage **out, int width, int height, int bands);
 
