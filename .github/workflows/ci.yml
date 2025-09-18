@@ -10,7 +10,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/imgproxy/imgproxy-ci:202410292002
+      image: ghcr.io/gomore/imgproxy-ci:202410292002
     strategy:
       matrix:
         go-version: ["1.23.x", "1.22.x", "1.21.x"]
@@ -32,7 +32,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/imgproxy/imgproxy-ci:202410292002
+      image: ghcr.io/gomore/imgproxy-ci:202410292002
     strategy:
       matrix:
         go-version: ["1.23.x"]
@@ -64,7 +64,7 @@ jobs:
         with:
           style: file
           version: 18 # Ubuntu 24.04 provides clang-format-18
-          tidy-checks: '-*' # disable clang-tidy
+          tidy-checks: "-*" # disable clang-tidy
 
       - name: Fail fast
         continue-on-error: true # TODO: remove this line in the future

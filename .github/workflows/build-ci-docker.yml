@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       vips_versions:
-        description: 'Whitespace separated list of libvips versions to build'
+        description: "Whitespace separated list of libvips versions to build"
         required: true
         default: "8.14 8.15 8.16"
 
@@ -30,7 +30,7 @@ jobs:
 
       - name: Generate Docker tag
         id: tag
-        run: echo "tag=ghcr.io/imgproxy/imgproxy-ci:$(date +%Y%m%d%H%M)" >> "$GITHUB_OUTPUT"
+        run: echo "tag=ghcr.io/gomore/imgproxy-ci:$(date +%Y%m%d%H%M)" >> "$GITHUB_OUTPUT"
 
       - name: Build and push
         uses: docker/build-push-action@v6

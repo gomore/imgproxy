@@ -5,8 +5,7 @@ on:
 
 env:
   DOCKER_META_IMAGES: |
-    darthsim/imgproxy
-    ghcr.io/imgproxy/imgproxy
+    ghcr.io/gomore/imgproxy
   DOCKER_META_TAGS: |
     type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
     type=ref,event=branch,enable=${{ startsWith(github.ref, 'refs/heads/test/') }}
@@ -16,19 +15,18 @@ env:
 
 jobs:
   build:
-    if: github.repository_owner == 'imgproxy'
+    if: github.repository_owner == 'gomore'
     strategy:
       matrix:
         build:
           - arch: amd64
             dockerPlatform: linux/amd64
-            image: linux-5.0
+            image: macOS-arm64
           - arch: arm64
             dockerPlatform: linux/arm64/v8
-            image: arm-3.0
+            image: macOS-arm64
     runs-on:
-      - codebuild-imgproxy-${{ github.run_id }}-${{ github.run_attempt }}
-      - image:${{ matrix.build.image }}
+      group: ${{ matrix.build.image }}
     permissions:
       contents: read
       packages: write
@@ -113,4 +111,3 @@ jobs:
           do
             sh -c "docker buildx imagetools create ${ANNOTATIONS} -t $tag ${tag}-amd64 ${tag}-arm64"
           done
-
